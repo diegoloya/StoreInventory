@@ -9,7 +9,7 @@ public class Inventory {
 	
 	private int s;	//numeric value of a movie's unique code
 	private Scanner input;	//will hold value from user input
-	public ArrayList<Movie> list = new ArrayList<Movie>();
+	public ArrayList<Product> list = new ArrayList<Product>();
 	
 	
 	/**
@@ -28,7 +28,7 @@ public class Inventory {
 			
 															
 			for (int i = 0; i < list.size(); i++){		
-				Movie temp = list.get(i);
+				Product temp = list.get(i);
 				
 				if (s==temp.getSku()){
 					System.out.print("\n***SKU must be unique***\n");
@@ -73,7 +73,7 @@ public class Inventory {
 			return;
 		}
 		
-		Movie newEntry = new Movie(s,t,p,q);
+		Product newEntry = new Product(s,t,p,q);
 		list.add(newEntry);
 		
 		System.out.print("\n***Movie has been added***\n");
@@ -95,7 +95,7 @@ public class Inventory {
 		}
 		int flag=0;
 		for (int i = 0; i < list.size(); i++){
-			Movie temp = list.get(i);
+			Product temp = list.get(i);
 			
 			if (s==temp.getSku()){
 				flag=1;
@@ -122,7 +122,7 @@ public class Inventory {
 		System.out.println("\n------------------------------------------------------------------");
 		
 		for (int i = 0; i < list.size(); i++){
-			Movie temp = list.get(i);
+			Product temp = list.get(i);
 			temp.print();
 			System.out.println();
 			
@@ -145,7 +145,7 @@ public class Inventory {
 		}
 		int flag=0;
 		for (int i = 0; i < list.size(); i++){
-			Movie temp = list.get(i);
+			Product temp = list.get(i);
 			if (temp.getSku()==s){
 				
 				flag=1;

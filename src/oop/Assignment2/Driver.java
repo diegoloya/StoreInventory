@@ -19,7 +19,7 @@ public class Driver {
 		try {
 			FileInputStream fis = new FileInputStream("videoStoreInventory");
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			test.list = (ArrayList<Movie>)ois.readObject();
+			test.list = (ArrayList<Product>)ois.readObject();
 			fis.close();
 			} 
 			catch (FileNotFoundException e) {

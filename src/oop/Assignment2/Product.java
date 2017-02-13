@@ -17,7 +17,7 @@ public class Product implements Serializable {
 	 * Constructor for Movie instances
 	 * @param s- SKU, t-title, p-price, q-quantity
 	 */
-	Movie(int s, String t, float p, int q){
+	Product(int s, String t, float p, int q){
 		this.sku=s;
 		this.title=t;
 		this.price=p;
