@@ -10,7 +10,7 @@ public class Inventory  {
 	public int s;	//numeric value of a movie's unique code
 	public Scanner input;	//will hold value from user input
 	public ArrayList<Product> list = new ArrayList<Product>();
-	
+	public Product temp;
 	
 	/**
 	 * Creates an instance of Movie using user input and adds to arrayList
@@ -200,47 +200,110 @@ public class Inventory  {
 
 	void process(){
 		int tempSku;
-		int tempQuantity;
-		float tempCost;
+		int tempQuantity = 0;
+		float tempCost = 0;
+		temp=null;
 		
 		System.out.println("Enter the SKU of sold items:");	
 		input = new Scanner(System.in);
+		tempSku=input.nextInt();
+		
+		System.out.println("Enter quantity sold ");	
+		input = new Scanner(System.in);
+		tempQuantity=input.nextInt();
+		
+		System.out.println("Enter the cost of shipping");	
+		input = new Scanner(System.in);
+		tempCost=input.nextInt();
 		
 		
-		if(input.hasNextInt()){
-			tempSku=input.nextInt();
-		}
-		else{
-			System.out.print("\n***SKU needs to be numbers only***\n");
-			return;
-		}
-				
-		int flag=0;
-	
 		for (int i = 0; i < list.size(); i++){
-			Product temp = list.get(i);
+			temp = list.get(i);
 			if (tempSku==temp.getSku()){
-				flag=1;
-				System.out.println("Enter the quantity of sold items");
-				if(input.hasNextInt()){
-					tempQuantity=input.nextInt();
-					temp.reduceQuant(tempQuantity);
-				}
-
+				temp.reduceQuant(tempQuantity);
 			}
 		}
-		if (flag==0){
-			System.out.print("\n***Movie is not in Inventory***\n");
-			return;
-		}
-		else {
-			System.out.print("\n***Quantity reduced***\n");
-		}
 		
-		System.out.println("Enter the cost to ship sold items:");	
-		input = new Scanner(System.in);
-		tempCost=input.nextFloat();
 		
+//		
+//		if(input.hasNextInt()){
+//			tempSku=input.nextInt();
+//		}
+//		else{
+//			System.out.print("\n***SKU needs to be numbers only***\n");
+//			return;
+//		}
+//				
+//		int flag=0;
+//		
+//		for (int i = 0; i < list.size(); i++){
+//			temp = list.get(i);
+//			
+//			if (tempSku==temp.getSku()){
+//				flag=1;
+//				System.out.println("Enter the quantity of sold items");
+//				if(input.hasNextInt()){
+//					tempQuantity=input.nextInt();
+//					if (temp.reduceQuant(tempQuantity)){
+//						System.out.println("Enter the cost to ship sold items:");	
+//						input = new Scanner(System.in);
+//						if(input.hasNextFloat()){
+//							tempCost=input.nextFloat();
+//							if (tempCost<=0){
+//								System.out.print("\n***Price needs to be greater than $0.00***\n");
+//								temp.resetQuant(tempQuantity);
+//								return;
+//							}
+//						}
+//						else{
+//							System.out.print("\n***Price needs to be numbers & decimals only***\n");
+//							temp.resetQuant(tempQuantity);
+//							return;
+//						}
+//					}
+//					else
+//						return;
+//				}
+//			}
+//		}
+//		if (flag==0){
+//			System.out.print("\n***Movie is not in Inventory***\n");
+//			return;
+//		}
+		System.out.print("\nquantity sold");
+		System.out.print(tempQuantity);
+		System.out.print("\ntemp.getPrice()");
+		System.out.printf("%s%.2f","$",temp.getPrice());
+		System.out.print("\ntemp.getShipping(): ");
+		System.out.printf("%s%.2f","$",temp.getShipping());
+		System.out.print("\ntemp.getCommision()");
+		System.out.printf("%s%.2f","$",temp.getCommission());
+		System.out.print("\n");
+		
+		double totalPrice = (tempQuantity*temp.getPrice());
+		double totalShippingCredit = (tempQuantity*temp.getShipping());
+		double totalCommission = (tempQuantity* (temp.getCommission()));
+		double profit = (totalPrice+totalShippingCredit-(totalCommission+tempCost));
+		
+		System.out.print("\nTotal Price: ");
+		System.out.printf("%s%.2f","$",totalPrice);
+		System.out.print("\nTotal shipping Credit: ");
+		System.out.printf("%s%.2f","$",totalShippingCredit);
+		System.out.print("\nTotal Commission: ");
+		System.out.printf("%s%.2f","$",totalCommission);
+		System.out.print("\nProfit: ");
+		System.out.printf("%s%.2f","$",profit);
+		System.out.print("\n");
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
 		
 		
 	}

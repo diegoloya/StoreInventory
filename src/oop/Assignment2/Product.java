@@ -1,6 +1,5 @@
 package oop.Assignment2;
 import java.io.Serializable;
-import java.util.Comparator;
 
 /**
  * @author Diego Loya
@@ -9,7 +8,6 @@ import java.util.Comparator;
 @SuppressWarnings("serial")
 public abstract class Product implements Serializable{
 
-	
 	int sku;		//unique numeric code of movie
 	protected String title;	//holds a string for title of the movie
 	protected float price;	//currency value, $12.34
@@ -28,6 +26,8 @@ public abstract class Product implements Serializable{
 		this.type=ty;
 	}
 	
+	abstract double getCommission();
+	
 	/**
 	 * Getter for SKU code
 	 * @return the value of SKU of specified instance
@@ -36,12 +36,14 @@ public abstract class Product implements Serializable{
 		return sku;
 	}
 	
+	abstract double getShipping();
+	
 	String getTitle(){
 		return title;
 	}
 
-	//public abstract void add();
-	
+	abstract double getPrice();
+		
 	/**
 	 * Prints the attribute values of specified instance
 	 */
@@ -59,10 +61,20 @@ public abstract class Product implements Serializable{
 		System.out.print(title);
 	}
 	
-	void reduceQuant(int quant){
-		this.quantity-=quant;
+	boolean reduceQuant(int quant){
+		if (this.quantity>=quant){
+			this.quantity-=quant;
+			return true;
+		}
+		else 
+			System.out.print("***Error: Current quantity in stock is insufficient***");
+		return false;
 	}
 	
+	void resetQuant(int quant){
+		this.quantity+=quant;
+	}
+
 }
 
 

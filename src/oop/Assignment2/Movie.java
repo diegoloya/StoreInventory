@@ -13,14 +13,20 @@ public class Movie extends Product {
 	}
 
 	
-//	public void add(){
-//		System.out.println("movie add");	
-//	}
-	
 	@Override
 	void print() {
 		System.out.printf("%-10s%-10d%-30s$%7.2f%14d", type, sku,title,price,quantity);
 		
+	}
+	
+	double getCommission(){
+		double commission=(price*.12);
+		return commission;
+	}
+	
+	double getShipping(){
+		double shipping=2.98;
+		return shipping;
 	}
 	
 	void printsingle() {
@@ -28,6 +34,10 @@ public class Movie extends Product {
 		System.out.print("\nupc=");
 		System.out.print(upc);
 		
+	}
+	
+	double getPrice(){
+		return price;
 	}
 	
 	public void setUpc(){
