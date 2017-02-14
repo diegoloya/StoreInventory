@@ -7,22 +7,32 @@ import java.util.*;
  */
 public class Inventory {
 	
-	private int s;	//numeric value of a movie's unique code
-	private Scanner input;	//will hold value from user input
+	public int s;	//numeric value of a movie's unique code
+	public Scanner input;	//will hold value from user input
 	public ArrayList<Product> list = new ArrayList<Product>();
 	
+
+//	public void add(Product p) {
+//		p.add();
+//	}
+//	
 	
 	/**
 	 * Creates an instance of Movie using user input and adds to arrayList
 	 */
-	void addMovie(){
+	public void addMovie(){
 		
 		String t;	//Holds user input for title of movie
 		float p;	//Holds user input for price of movie
 		int q;		//Holds user input for quantity of movie
+		String pt;
+		
+		
+		System.out.println("Enter product type:");	
+		input = new Scanner(System.in);
+		pt=input.nextLine();
 		
 		System.out.println("Enter the SKU (numbers only!):");			
-		input = new Scanner(System.in);
 		if(input.hasNextInt()){
 			s=input.nextInt();
 			
@@ -73,12 +83,26 @@ public class Inventory {
 			return;
 		}
 		
-		Product newEntry = new Product(s,t,p,q);
-		list.add(newEntry);
-		
-		System.out.print("\n***Movie has been added***\n");
-
+		switch(pt) {
+        case "m" :
+			Product newMovie = new Movie(pt,s, t, p, q);
+			list.add(newMovie);
+           break;
+        case "t" :
+			Product newToy = new Toy(pt,s,t,p,q);
+			list.add(newToy);
+			break;
+        case "b" :
+			Product newBook = new Book(pt,s,t,p,q);
+			list.add(newBook);
+           break;
+       
+        default :
+           System.out.println("**has to be m b t");
+     }
+		System.out.print("\n***Product has been added***\n");
 	}
+
 				
 	/**
 	 * Takes input from user to search in inventory, if found it removes from inventory.
@@ -118,7 +142,7 @@ public class Inventory {
 			return;
 		}
 		
-		System.out.format("\n%-10s%-30s%7s%16s","SKU","Title","Price","Quantity");
+		System.out.format("\n%-10s%-10s%-30s%7s%16s","Type","SKU","Title","Price","Quantity");
 		System.out.println("\n------------------------------------------------------------------");
 		
 		for (int i = 0; i < list.size(); i++){
@@ -149,9 +173,7 @@ public class Inventory {
 			if (temp.getSku()==s){
 				
 				flag=1;
-				System.out.format("\n%-10s%-30s%7s%16s","SKU","Title","Price","Quantity");
-				System.out.println("\n---------------------------------------------------------------");
-				temp.print();
+				temp.printsingle();
 				System.out.println();
 			}
 		}
@@ -159,3 +181,4 @@ public class Inventory {
 			System.out.print("\n***Movie is not in Inventory***\n");	
 	}
 }
+

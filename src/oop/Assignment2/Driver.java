@@ -36,8 +36,8 @@ public class Driver {
 			Scanner scanner = new Scanner(System.in);
 			
 			System.out.println("\nVideo Store Inventory Menu \n");
-			System.out.println("1. Add Movie \n2. Remove Movie \n3. Find Movie by SKU \n4. "
-					+ "Display Inventory \n5. Quit the Program \n");
+			System.out.println("1. Add product \n2. Remove product \n3. Find product by SKU \n4. "
+					+ "Display inventory sotrted by sku \n5. Display inventory sorted by title \n6. Process a sale \n7. Quit the Program \n");
 			System.out.println("Enter your choice:");
 			choice=scanner.nextInt();
 			
@@ -53,8 +53,14 @@ public class Driver {
 			else if (choice==4){
 				test.display();
 			}	
+			else if (choice==5){
+				//test.displayMovie();
+			}
+			else if (choice==6){
+				//test.display();
+			}	
 			
-		}while(choice!=5);
+		}while(choice!=7);
 		
 		   //the following code writes the objects to the file:
 	    try {
