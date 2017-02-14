@@ -5,7 +5,6 @@ import java.io.Serializable;
  * @author Diego Loya
  * Holds all the attributes of a movie
  */
-@SuppressWarnings("serial")
 public abstract class Product implements Serializable{
 
 	int sku;		//unique numeric code of movie

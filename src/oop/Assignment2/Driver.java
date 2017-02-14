@@ -8,75 +8,79 @@ import java.io.*;
  * Displays menu and takes input from user
  */
 public class Driver {
+	
+	static Scanner sc = new Scanner(System.in);
+	
 	/**
 	 * Displays menu, takes user input, and calls corresponding action
 	 */
-	@SuppressWarnings("unchecked")
+
 	public static void main(String[] args) {
 	
 		int choice;		//holds user input for desired action
 		Inventory test = new Inventory();
 		
 		try {
-			FileInputStream fis = new FileInputStream("videoStoreInventory");
+			FileInputStream fis = new FileInputStream("inventory.dat");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			test.list = (ArrayList<Product>)ois.readObject();
 			fis.close();
-			} 
-			catch (FileNotFoundException e) {
-				System.out.println("Cannot find datafile");
-			    } 
-			catch (IOException e) {
-				System.out.println("Problem with file input");
-			    }
-			catch (ClassNotFoundException e) {
-				System.out.println("Class not found on input from file");
+			} catch (FileNotFoundException fnfe) {
+				//first time running program
+			} catch (IOException ioe) {
+				System.out.println("Error: " + ioe);
+				return; //exit main
+			} catch (ClassNotFoundException cnfe) {
+				System.out.println("Error: " + cnfe);
+				return; //exit main
 			}
 	
 		do {
-			Scanner scanner = new Scanner(System.in);
-			
-			System.out.println("\nVideo Store Inventory Menu \n");
+			System.out.println("\nOnline Store Inventory Menu \n");
 			System.out.println("1. Add product \n2. Remove product \n3. Find product by SKU \n4. "
-					+ "Display inventory sotrted by sku \n5. Display inventory sorted by title \n6. Process a sale \n7. Quit the Program \n");
+					+ "Display inventory sorted by sku \n5. Display inventory sorted by title \n6. Process a sale \n7. Quit the Program \n");
 			System.out.println("Enter your choice:");
-			choice=scanner.nextInt();
+			choice=sc.nextInt();
 			
-			if (choice==1){
-				test.addMovie();
-			}
-			else if (choice==2){
-				test.removeMovie();
-			}
-			else if (choice==3){
-				test.displayMovie();
-			}
-			else if (choice==4){
+			switch (choice){
+			case 1:
+				test.addProduct();
+				break;
+			case 2:
+				test.removeProduct();
+				break;
+			case 3:
+				test.displayProduct();
+				break;
+			case 4:
 				test.displayBySku();
-			}	
-			else if (choice==5){
+				break;
+			case 5:
 				test.displayByTitle();
-			}
-			else if (choice==6){
+				break;
+			case 6:
 				test.process();
-			}	
+				break;
+			case 7:
+				System.out.print("\nProgram terminated..");
+				break;
+			default:
+				System.out.print("\nInvalid Selection");
+			}
 			
 		}while(choice!=7);
 		
 		   //the following code writes the objects to the file:
 	    try {
-	    	FileOutputStream fos = new FileOutputStream("videoStoreInventory");
+	    	FileOutputStream fos = new FileOutputStream("inventory.dat");
 	    	ObjectOutputStream oos = new ObjectOutputStream(fos);
 	    	oos.writeObject(test.list); //ArrayList & contents are serializable
 	    	fos.close();
 	    } 
 	    catch (IOException e) {
 	    	System.out.println("Problem with file output");
-	    }
-	    
-		System.out.print("\nProgram terminated..");
+	    }   
 	}
-	
 }
 
 

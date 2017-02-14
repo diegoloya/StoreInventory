@@ -1,11 +1,10 @@
 package oop.Assignment2;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-@SuppressWarnings("serial")
-public class Toy extends Product {
+public class Toy extends Product implements Serializable{
 	private int weight;
-	private Scanner input;
 	
 	public Toy(String pt, int s, String t, float p, int q) {
 		super(pt, s, t, p, q);
@@ -19,6 +18,7 @@ public class Toy extends Product {
 	
 	@Override
 	void print() {
+		type="Toy";
 		System.out.printf("%-10s%-10d%-30s$%7.2f%14d", type, sku,title,price,quantity);
 		
 	}
@@ -46,7 +46,6 @@ public class Toy extends Product {
 	}
 	public void setWeight(){
 		System.out.println("Enter weight:");	
-		input = new Scanner(System.in);
-		weight=input.nextInt();
+		weight=Driver.sc.nextInt();
 	}
 }
