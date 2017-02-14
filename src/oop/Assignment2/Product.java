@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public abstract class Product implements Serializable{
 
-	int sku;		//unique numeric code of movie
+	protected int sku;		//unique numeric code of movie
 	protected String title;	//holds a string for title of the movie
 	protected float price;	//currency value, $12.34
 	protected int quantity;	//numeric value for quantity
