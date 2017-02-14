@@ -1,14 +1,16 @@
 package oop.Assignment2;
 import java.io.Serializable;
+import java.util.Comparator;
 
 /**
  * @author Diego Loya
  * Holds all the attributes of a movie
  */
+@SuppressWarnings("serial")
 public abstract class Product implements Serializable{
 
 	
-	protected int sku;		//unique numeric code of movie
+	int sku;		//unique numeric code of movie
 	protected String title;	//holds a string for title of the movie
 	protected float price;	//currency value, $12.34
 	protected int quantity;	//numeric value for quantity
@@ -33,15 +35,17 @@ public abstract class Product implements Serializable{
 	int getSku(){
 		return sku;
 	}
+	
+	String getTitle(){
+		return title;
+	}
 
 	//public abstract void add();
 	
 	/**
 	 * Prints the attribute values of specified instance
 	 */
-	void print(){		
-		System.out.printf("%-10d%-30s$%7.2f%14d", sku,title,price,quantity);
-	}
+	abstract void print();
 	
 	void printsingle() {
 		System.out.print("\nsku=");
@@ -55,7 +59,13 @@ public abstract class Product implements Serializable{
 		System.out.print(title);
 	}
 	
+	void reduceQuant(int quant){
+		this.quantity-=quant;
+	}
+	
 }
+
+
 
 
 

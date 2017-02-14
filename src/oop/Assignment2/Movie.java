@@ -1,9 +1,9 @@
 package oop.Assignment2;
 
-import java.io.Serializable;
 import java.util.Scanner;
 
-public class Movie extends Product{
+@SuppressWarnings("serial")
+public class Movie extends Product {
 	private int upc;
 	private Scanner input;
 	

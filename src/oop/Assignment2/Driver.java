@@ -51,13 +51,13 @@ public class Driver {
 				test.displayMovie();
 			}
 			else if (choice==4){
-				test.display();
+				test.displayBySku();
 			}	
 			else if (choice==5){
-				//test.displayMovie();
+				test.displayByTitle();
 			}
 			else if (choice==6){
-				//test.display();
+				test.process();
 			}	
 			
 		}while(choice!=7);

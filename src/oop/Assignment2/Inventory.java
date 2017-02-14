@@ -5,22 +5,17 @@ import java.util.*;
  * @author Diego Loya
  * Creates and interacts with a collection of movies in inventory 
  */
-public class Inventory {
+public class Inventory  {
 	
 	public int s;	//numeric value of a movie's unique code
 	public Scanner input;	//will hold value from user input
 	public ArrayList<Product> list = new ArrayList<Product>();
 	
-
-//	public void add(Product p) {
-//		p.add();
-//	}
-//	
 	
 	/**
 	 * Creates an instance of Movie using user input and adds to arrayList
 	 */
-	public void addMovie(){
+	void addMovie(){
 		
 		String t;	//Holds user input for title of movie
 		float p;	//Holds user input for price of movie
@@ -135,7 +130,7 @@ public class Inventory {
 	/**
 	 * Displays the contents of arrayList by using print() method from Movie class
 	 */
-	void display(){
+	void displayBySku(){
 
 		if (list.size()==0){
 			System.out.print("\n***Movie is empty***\n");
@@ -143,7 +138,10 @@ public class Inventory {
 		}
 		
 		System.out.format("\n%-10s%-10s%-30s%7s%16s","Type","SKU","Title","Price","Quantity");
-		System.out.println("\n------------------------------------------------------------------");
+		System.out.println("\n----------------------------------------------------------------------");
+		
+		Comparator<Product> comp = new ProductBySku();
+	    Collections.sort(list, comp);
 		
 		for (int i = 0; i < list.size(); i++){
 			Product temp = list.get(i);
@@ -153,6 +151,25 @@ public class Inventory {
 		}
 	}
 	
+	void displayByTitle(){
+
+		if (list.size()==0){
+			System.out.print("\n***Movie is empty***\n");
+			return;
+		}
+		
+		System.out.format("\n%-10s%-10s%-30s%7s%16s","Type","SKU","Title","Price","Quantity");
+		System.out.println("\n-----------------------------------------------------------------------");
+		
+		Comparator<Product> comp = new ProductByTitle();
+	    Collections.sort(list, comp);
+		
+		for (int i = 0; i < list.size(); i++){
+			Product temp = list.get(i);
+			temp.print();
+			System.out.println();	
+		}
+	}
 	/**
 	 * Takes user input, searches for the movie, and displays info if found
 	 */
@@ -180,5 +197,53 @@ public class Inventory {
 		if (flag==0)
 			System.out.print("\n***Movie is not in Inventory***\n");	
 	}
+
+	void process(){
+		int tempSku;
+		int tempQuantity;
+		float tempCost;
+		
+		System.out.println("Enter the SKU of sold items:");	
+		input = new Scanner(System.in);
+		
+		
+		if(input.hasNextInt()){
+			tempSku=input.nextInt();
+		}
+		else{
+			System.out.print("\n***SKU needs to be numbers only***\n");
+			return;
+		}
+				
+		int flag=0;
+	
+		for (int i = 0; i < list.size(); i++){
+			Product temp = list.get(i);
+			if (tempSku==temp.getSku()){
+				flag=1;
+				System.out.println("Enter the quantity of sold items");
+				if(input.hasNextInt()){
+					tempQuantity=input.nextInt();
+					temp.reduceQuant(tempQuantity);
+				}
+
+			}
+		}
+		if (flag==0){
+			System.out.print("\n***Movie is not in Inventory***\n");
+			return;
+		}
+		else {
+			System.out.print("\n***Quantity reduced***\n");
+		}
+		
+		System.out.println("Enter the cost to ship sold items:");	
+		input = new Scanner(System.in);
+		tempCost=input.nextFloat();
+		
+		
+		
+	}
+	
 }
 
