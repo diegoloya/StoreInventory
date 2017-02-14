@@ -10,11 +10,6 @@ public class Toy extends Product implements Serializable{
 		super(pt, s, t, p, q);
 		setWeight();
 	}
-
-//	public void add(){
-//		System.out.println("toy add");	
-//	}
-	
 	
 	@Override
 	void print() {
@@ -22,21 +17,18 @@ public class Toy extends Product implements Serializable{
 		System.out.printf("%-10s%-10d%-30s$%7.2f%14d", type, sku,title,price,quantity);
 		
 	}
-	@Override
-	double getCommission(){
-		double commission=(price*.15);
-		return commission;
+
+	
+	double totalCommission(double tempQuantity){
+		return (tempQuantity*(price*0.15));
 	}
 	
-	double getShipping(){
+	double totalShippingCredit(double tempQuantity){
 		int roundedWeight=((weight/16)+1);
 		double shipping=( 4.49 + (0.5*(roundedWeight)));
-		return shipping;
+		return (tempQuantity*shipping);
 	}
-	
-	double getPrice(){
-		return price;
-	}
+
 	
 	void printsingle() {
 		super.printsingle();

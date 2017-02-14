@@ -18,14 +18,12 @@ public class Movie extends Product implements Serializable{
 		
 	}
 	
-	double getCommission(){
-		double commission=(price*.12);
-		return commission;
+	double totalShippingCredit(double tempQuantity){
+		return (tempQuantity*2.98);
 	}
 	
-	double getShipping(){
-		double shipping=2.98;
-		return shipping;
+	double totalCommission(double tempQuantity){
+		return (tempQuantity*(price*0.12));
 	}
 	
 	void printsingle() {
@@ -33,10 +31,6 @@ public class Movie extends Product implements Serializable{
 		System.out.print("\nupc=");
 		System.out.print(upc);
 		
-	}
-	
-	double getPrice(){
-		return price;
 	}
 	
 	public void setUpc(){

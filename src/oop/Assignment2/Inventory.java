@@ -261,19 +261,15 @@ public class Inventory {
 					else
 						return;
 				}				
-				double totalPrice = (tempQuantity*temp.getPrice());
-				double totalShippingCredit = (tempQuantity*temp.getShipping());
-				double totalCommission = (tempQuantity* (temp.getCommission()));
-				double profit = (totalPrice+totalShippingCredit-(totalCommission+tempCost));
-				
+
 				System.out.print("\nTotal Price: ");
-				System.out.printf("%s%.2f","$",totalPrice);
+				System.out.printf("%s%.2f","$",temp.totalPrice(tempQuantity));
 				System.out.print("\nTotal shipping Credit: ");
-				System.out.printf("%s%.2f","$",totalShippingCredit);
+				System.out.printf("%s%.2f","$", temp.totalShippingCredit(tempQuantity));
 				System.out.print("\nTotal Commission: ");
-				System.out.printf("%s%.2f","$",totalCommission);
+				System.out.printf("%s%.2f","$",temp.totalCommission(tempQuantity));
 				System.out.print("\nProfit: ");
-				System.out.printf("%s%.2f","$",profit);
+				System.out.printf("%s%.2f","$",temp.profit(tempCost, tempQuantity));
 				System.out.print("\n");	
 			}
 		}

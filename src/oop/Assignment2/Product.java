@@ -25,8 +25,6 @@ public abstract class Product implements Serializable{
 		this.type=ty;
 	}
 	
-	abstract double getCommission();
-	
 	/**
 	 * Getter for SKU code
 	 * @return the value of SKU of specified instance
@@ -34,15 +32,20 @@ public abstract class Product implements Serializable{
 	int getSku(){
 		return sku;
 	}
-	
-	abstract double getShipping();
-	
+
 	String getTitle(){
 		return title;
 	}
-
-	abstract double getPrice();
+	//All process functions
+	double totalPrice(double tempQuantity){
+		return (tempQuantity*price);
+	}
+	abstract double totalShippingCredit(double tempQuantity);
+	abstract double totalCommission(double tempQuantity);
+	double profit(double tempCost, double tempQuantity){
+		return (totalPrice(tempQuantity)+totalShippingCredit(tempQuantity)-(totalCommission(tempQuantity)+tempCost));
 		
+	}
 	/**
 	 * Prints the attribute values of specified instance
 	 */

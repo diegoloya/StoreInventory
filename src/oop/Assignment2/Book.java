@@ -23,6 +23,19 @@ public class Book extends Product implements Serializable{
 		return commission;
 	}
 	
+	double totalShippingCredit(double tempQuantity){
+		return (tempQuantity*3.99);
+	}
+	
+	double totalCommission(double tempQuantity){
+		return (tempQuantity*(price*0.15));
+	}
+	
+//	double profit(double tempCost, double tempQuantity){
+//		return (totalPrice(tempQuantity)+totalShippingCredit(tempQuantity)-(totalCommission(tempQuantity)+tempCost));
+//		
+//	}
+	
 	double getShipping(){
 		double shipping=3.99;
 		return shipping;
