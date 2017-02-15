@@ -7,9 +7,9 @@ import java.util.*;
  */
 public class Inventory {
 	
-	public int s;	//numeric value of a movie's unique code
-	public ArrayList<Product> list = new ArrayList<Product>();
-	public Product temp;
+	private int s;	//numeric value of a movie's unique code
+	ArrayList<Product> list = new ArrayList<Product>();
+	private Product temp;
 	
 	/**
 	 * Default constructor, creates an empty inventory
@@ -19,7 +19,7 @@ public class Inventory {
 	
 	
 	/**
-	 * Creates an instance of Movie using user input and adds to arrayList
+	 * Creates an instance of requested product using user input and adds to arrayList
 	 */
 	void addProduct(){
 		
@@ -95,17 +95,17 @@ public class Inventory {
 			switch(pt) {
 	        case "m" :
 	        case "M" :
-				Product newMovie = new Movie(pt,s, t, p, q);
+				Product newMovie = new Movie(s, t, p, q);
 				list.add(newMovie);
 	           break;
 	        case "t" :
 	        case "T" :
-				Product newToy = new Toy(pt,s,t,p,q);
+				Product newToy = new Toy(s,t,p,q);
 				list.add(newToy);
 				break;
 	        case "b" :
 	        case "B" :
-				Product newBook = new Book(pt,s,t,p,q);
+				Product newBook = new Book(s,t,p,q);
 				list.add(newBook);
 	           break;
 			}
@@ -147,7 +147,7 @@ public class Inventory {
 	}
 
 	/**
-	 * Displays the contents of arrayList by using print() method from Movie class
+	 * Displays the inventory sorted by SKU value
 	 */
 	void displayBySku(){
 
@@ -169,7 +169,9 @@ public class Inventory {
 			
 		}
 	}
-	
+	/**
+	 * Displays the inventory sorted by title
+	 */
 	void displayByTitle(){
 
 		if (list.size()==0){
@@ -190,7 +192,7 @@ public class Inventory {
 		}
 	}
 	/**
-	 * Takes user input, searches for the movie, and displays info if found
+	 * Takes user input, searches for the product, and displays info if found
 	 */
 	void displayProduct(){
 		

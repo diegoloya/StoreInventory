@@ -7,22 +7,22 @@ import java.io.Serializable;
  */
 public abstract class Product implements Serializable{
 
-	protected int sku;		//unique numeric code of movie
-	protected String title;	//holds a string for title of the movie
-	protected float price;	//currency value, $12.34
-	protected int quantity;	//numeric value for quantity
-	protected String type;	//Product type, Book, Movie, Toy
+	private int sku;		//unique numeric code of movie
+	private String title;	//holds a string for title of the movie
+	private float price;	//currency value, $12.34
+	private int quantity;	//numeric value for quantity
+
 	
 	/**
 	 * Constructor for Product instances
 	 * @param ty-product type, s- SKU, t-title, p-price, q-quantity
 	 */
-	Product(String ty,int s, String t, float p, int q){
+	Product(int s, String t, float p, int q){
 		this.sku=s;
 		this.title=t;
 		this.price=p;
 		this.quantity=q;
-		this.type=ty;
+
 	}
 	
 	/**
@@ -30,7 +30,12 @@ public abstract class Product implements Serializable{
 	 */	
 	abstract double totalShippingCredit(double tempQuantity);
 	abstract double totalCommission(double tempQuantity);
-	abstract void print();
+	
+	
+	void print()
+	{
+		System.out.printf("%-10d%-30s$%7.2f%14d",sku, title,price,quantity);
+	};
 	
 	/**
 	 * Getter for SKU code
@@ -39,6 +44,10 @@ public abstract class Product implements Serializable{
 	int getSku(){
 		return sku;
 	}
+	
+//	float getPrice(){
+//		return price;
+//	}
 	/**
 	 * Getter for Title
 	 * @return the value of title of specified instance

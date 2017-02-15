@@ -9,13 +9,14 @@ import java.io.Serializable;
 public class Book extends Product implements Serializable{
 	private int isbn;	//special attribute for book
 	private String author;	//special attribute for book
-	
+	private String type;	//type of product
 	/**
 	 * Constructor for Book instances
 	 * @param pt-product type, s- SKU, t-title, p-price, q-quantity
 	 */
-	public Book(String pt,int s, String t, float p, int q) {
-		super(pt, s, t, p, q);
+	public Book(int s, String t, float p, int q) {
+		super(s, t, p, q);
+		type="Book";
 		System.out.println("Enter Isbn:");	
 		isbn=Driver.sc.nextInt();
 		Driver.sc.nextLine();
@@ -28,9 +29,8 @@ public class Book extends Product implements Serializable{
 	 */
 	@Override
 	void print() {
-		type="Book";
-		System.out.printf("%-10s%-10d%-30s$%7.2f%14d", type, sku,title,price,quantity);
-		
+		System.out.printf("%-10s", type);
+		super.print();
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class Book extends Product implements Serializable{
 	 * @return total commission
 	 */
 	double totalCommission(double tempQuantity){
-		return (tempQuantity*(price*0.15));
+		return (tempQuantity*(getPrice()*0.15));
 	}
 	
 	/**

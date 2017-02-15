@@ -1,5 +1,4 @@
 package oop.Assignment2;
-
 import java.io.Serializable;
 
 /**
@@ -8,13 +7,14 @@ import java.io.Serializable;
  */
 public class Movie extends Product implements Serializable{
 	private int upc; //special attribute for movie
-	
+	private String type; //type of product
 	/**
 	 * Constructor for Movie instances
 	 * @param pt-product type, s- SKU, t-title, p-price, q-quantity
 	 */
-	public Movie(String pt,int s, String t, float p, int q) {
-		super(pt, s, t, p, q);
+	public Movie(int s, String t, float p, int q) {
+		super(s, t, p, q);
+		type="Movie";
 		System.out.println("Enter upc:");	
 		upc=Driver.sc.nextInt();
 	}
@@ -24,10 +24,10 @@ public class Movie extends Product implements Serializable{
 	 */
 	@Override
 	void print() {
-		type="Movie";
-		System.out.printf("%-10s%-10d%-30s$%7.2f%14d", type, sku,title,price,quantity);
-		
+		System.out.printf("%-10s", type);
+		super.print();
 	}
+	
 	/**
 	 * Calculates total shipping credit
 	 * @param tempQuantity=number of items sold
@@ -42,7 +42,7 @@ public class Movie extends Product implements Serializable{
 	 * @return total total commission
 	 */
 	double totalCommission(double tempQuantity){
-		return (tempQuantity*(price*0.12));
+		return (tempQuantity*(getPrice()*0.12));
 	}
 	/**
 	 * Prints all of the attributes, including special attribute
