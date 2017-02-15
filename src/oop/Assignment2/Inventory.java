@@ -3,7 +3,7 @@ import java.util.*;
 
 /**
  * @author Diego Loya
- * Creates and interacts with a collection of movies in inventory 
+ * Creates and interacts with a collection of products in inventory 
  */
 public class Inventory {
 	

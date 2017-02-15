@@ -1,5 +1,4 @@
 package oop.Assignment2;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
@@ -14,12 +13,13 @@ public class Driver {
 	/**
 	 * Displays menu, takes user input, and calls corresponding action
 	 */
-
 	public static void main(String[] args) {
 	
 		int choice;		//holds user input for desired action
 		Inventory test = new Inventory();
 		
+		
+		//Reads from indicated file
 		try {
 			FileInputStream fis = new FileInputStream("inventory.dat");
 			ObjectInputStream ois = new ObjectInputStream(fis);
