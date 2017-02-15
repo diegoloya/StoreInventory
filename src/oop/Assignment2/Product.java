@@ -31,7 +31,9 @@ public abstract class Product implements Serializable{
 	abstract double totalShippingCredit(double tempQuantity);
 	abstract double totalCommission(double tempQuantity);
 	
-	
+	/**
+	 * prints shared attributes
+	 */	
 	void print()
 	{
 		System.out.printf("%-10d%-30s$%7.2f%14d",sku, title,price,quantity);
@@ -44,10 +46,13 @@ public abstract class Product implements Serializable{
 	int getSku(){
 		return sku;
 	}
-	
-//	float getPrice(){
-//		return price;
-//	}
+	/**
+	 * Getter for Price
+	 * @return the value of price of specified instance
+	 */
+	float getPrice(){
+		return price;
+	}
 	/**
 	 * Getter for Title
 	 * @return the value of title of specified instance

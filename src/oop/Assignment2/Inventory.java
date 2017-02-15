@@ -26,7 +26,7 @@ public class Inventory {
 		String t;	//Holds user input for title of movie
 		float p;	//Holds user input for price of movie
 		int q;		//Holds user input for quantity of movie
-		String pt;
+		String pt;  //Holds user input for product type
 		
 		
 		System.out.println("Enter product type:");	
